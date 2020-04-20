@@ -15,7 +15,7 @@ public:
 	int num;
 
 	linkLists(){
-		
+
 		int datatemp;
 		cout << "Enter the number of nodes : ";
 		cin >> num;
@@ -36,7 +36,7 @@ public:
 		a = temp;		
 	}
 
-	int InsertNth(int insdata, int n){
+	void InsertNth(int insdata, int n){
 		int i=1;
 		node* temp = a;
 		node* t1;
@@ -46,7 +46,7 @@ public:
 		if(n==1){
 			newnode->link = a;
 			a = newnode;
-			return 0;
+			return;
 		}
 
 		while(i<n-1){
@@ -57,7 +57,28 @@ public:
 		newnode->link = temp->link;
 		temp->link = newnode;
 		
-		return 0;
+		return;
+	}
+
+	void Deletenth(int n){
+		node* temp = a;
+		node* t1;
+
+		if(n==1){
+			a = temp->link;
+			return;
+		}
+
+		int i=0;
+
+		while(i<n-2){
+			temp = temp->link;
+			i++;
+		}
+
+		t1 = temp->link;
+		temp->link = t1->link;
+		return;
 	}
 
 	void Printer(){
@@ -77,18 +98,16 @@ int main(){
 	linkLists list1;
 	int datatemp,n;
 
-	cout << "Enter the nth position : ";
+	cout << "Enter the nth position to delete: ";
 	cin >> n;
 
-	if(n>list1.num +1 || n<1){
+	if(n>list1.num || n<1){
 		cout << "Invalid";
 		exit(0);
 	}
 	
-	cout << "Enter the data : ";
-	cin >> datatemp;
 
-	list1.InsertNth(datatemp,n);
+	list1.Deletenth(n);
 	list1.Printer();
 
 	return 0;
