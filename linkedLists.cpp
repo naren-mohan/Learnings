@@ -78,6 +78,8 @@ public:
 
 		t1 = temp->link;
 		temp->link = t1->link;
+		delete(t1);
+		
 		return;
 	}
 
