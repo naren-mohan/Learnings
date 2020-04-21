@@ -79,8 +79,20 @@ public:
 		t1 = temp->link;
 		temp->link = t1->link;
 		delete(t1);
-		
-		return;
+	}
+
+	void Reverselist(){
+		node* temp = a; 
+		node* prev=NULL;
+		node* next=a;
+
+		while(temp!=NULL){
+			next = temp->link;
+			temp->link = prev;
+			prev = temp;
+			temp = next; 
+		}
+		a = prev;
 	}
 
 	void Printer(){
@@ -99,17 +111,9 @@ int main(){
 	
 	linkLists list1;
 	int datatemp,n;
-
-	cout << "Enter the nth position to delete: ";
-	cin >> n;
-
-	if(n>list1.num || n<1){
-		cout << "Invalid";
-		exit(0);
-	}
 	
-
-	list1.Deletenth(n);
+	list1.Reverselist();
+	cout << "Reversing the list\n";
 	list1.Printer();
 
 	return 0;
