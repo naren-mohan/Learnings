@@ -104,6 +104,21 @@ public:
 		}
 		cout << "\n";
 	}
+
+	void PrinterRecursion(node* temp){
+		if(temp == NULL){
+			cout << "\n";
+			return;
+		}
+		cout << temp->data << " ";
+		PrinterRecursion(temp->link);
+	}
+	
+	void ReversePrinterRecursion(node* temp){
+		if(temp == NULL) return;
+		ReversePrinterRecursion(temp->link);
+		cout << temp->data << " ";
+	}
 };
 
 
@@ -111,10 +126,13 @@ int main(){
 	
 	linkLists list1;
 	int datatemp,n;
-	
-	list1.Reverselist();
-	cout << "Reversing the list\n";
-	list1.Printer();
+	cout << "Printing using Recursion\n";
+	list1.PrinterRecursion(list1.a);
+	cout << "Reverse Printing using Recursion\n";
+	list1.ReversePrinterRecursion(list1.a);
+
+	//cout << "Reversing the list\n";
+	//list1.Printer();
 
 	return 0;
 }
