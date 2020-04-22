@@ -39,20 +39,73 @@ public:
 	}
 };
 
+class intStackLL{
+public:
+	struct node{
+		int data;
+		node* next;
+	};
+
+	node* head = NULL;
+
+	void push(int insdata){
+		node* temp = new node();
+		temp->data = insdata;
+		temp->next = head; 
+		head = temp;
+		Printer();
+	}
+
+	void pop(){
+		if(isEmpty()){
+			cout << "Error : Stack is empty!\n";
+			return;
+		}
+		node* temp = head;
+		head = temp->next;
+		delete(temp);
+		Printer();
+	}
+
+	int top(){
+		node* temp = head;
+		int i=-1;
+		while(temp != NULL){
+			temp = temp->next;
+			i++;
+		}
+		return i;
+	}
+
+	bool isEmpty(){
+		if(head == NULL)	return true;
+		else	return false;
+	}
+
+	void Printer(){
+		node* temp = head;
+		while(temp != NULL){
+			cout << temp->data << " ";
+			temp = temp->next;
+		}
+		cout << "\n";
+	}
+
+
+};
+
 int main(){
-	intStackArray list1;
+	
+	intStackLL list1;
 	list1.push(2);
 	list1.push(4);
 	list1.push(6);
-	list1.push(2);
-	
 	list1.pop();
 	list1.pop();
 	list1.pop();
 	list1.pop();
 	list1.pop();
-	list1.pop();
-	cout << list1.topVal();
+	cout << "Top: " << list1.top();
 
 	return 0;
 
